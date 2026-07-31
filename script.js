@@ -100,12 +100,12 @@ if (reducedMotion) {
    read from the stack's live bounding rect, so they stay correct while the
    parallax transform moves the layer. */
 
-const alt = document.querySelector(".subject-alt");
+const alts = Array.from(document.querySelectorAll(".subject-alt"));
 const stack = document.querySelector(".subject-stack");
 const hero = document.querySelector(".hero");
 
-if (alt && stack && hero && finePointer) {
-  if (alt.dataset.src) alt.src = alt.dataset.src;
+if (alts.length && stack && hero && finePointer) {
+  for (const a of alts) if (a.dataset.src) a.src = a.dataset.src;
 
   const REVEAL_RADIUS = 190; // px
   const pointer = { x: 0, y: 0 };
@@ -129,9 +129,11 @@ if (alt && stack && hero && finePointer) {
     radius += (targetRadius - radius) * t;
 
     const rect = stack.getBoundingClientRect();
-    alt.style.setProperty("--mx", `${pointer.x - rect.left}px`);
-    alt.style.setProperty("--my", `${pointer.y - rect.top}px`);
-    alt.style.setProperty("--reveal-r", `${radius}px`);
+    for (const a of alts) {
+      a.style.setProperty("--mx", `${pointer.x - rect.left}px`);
+      a.style.setProperty("--my", `${pointer.y - rect.top}px`);
+      a.style.setProperty("--reveal-r", `${radius}px`);
+    }
   });
 }
 

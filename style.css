@@ -28,18 +28,6 @@
   --font-mono: "Share Tech Mono", ui-monospace, monospace;
 
   --gutter: clamp(1.25rem, 5vw, 5rem);
-
-  /* legacy tokens — kept until every region is converted (Task 9 removes) */
-  --cream: #f2efe9;
-  --cream-deep: #e9e4da;
-  --ink: #141210;
-  --ink-soft: #201d19;
-  --red: #e10600;
-  --red-deep: #b30500;
-  --muted-light: #8a857c;
-  --muted-dark: #a39d92;
-  --line-light: rgba(20, 18, 16, 0.16);
-  --line-dark: rgba(242, 239, 233, 0.16);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -198,7 +186,7 @@ a { color: inherit; text-decoration: none; }
 .wordmark .line {
   display: block;
   overflow: hidden;
-  padding-bottom: 0.08em; /* keep serif descenders from clipping */
+  padding-bottom: 0.08em; /* headroom so the clipped slide-in animation doesn't clip the text */
 }
 
 .wordmark .line-inner {

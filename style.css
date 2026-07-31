@@ -167,29 +167,32 @@ a { color: inherit; text-decoration: none; }
 }
 
 .hero-eyebrow {
-  color: var(--red);
+  color: var(--cyan);
+  text-shadow: 0 0 8px rgba(111, 195, 223, 0.5);
   margin-bottom: 1rem;
 }
 
 .wordmark {
-  font-weight: 400;
-  font-size: clamp(2.1rem, 6vw, 4.2rem);
-  line-height: 1;
-  letter-spacing: 0.01em;
-}
-
-.wordmark em {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 600;
-  letter-spacing: 0;
-}
-
-.wordmark strong {
-  font-family: var(--font-heavy);
-  font-weight: 400;
+  font-family: var(--font-display);
+  font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 0.02em;
+  font-size: clamp(1.9rem, 5.2vw, 3.8rem);
+  line-height: 1;
+  letter-spacing: 0.06em;
+}
+
+/* RYAN — outlined program shell */
+.wordmark em {
+  font-style: normal;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--cyan);
+}
+
+/* HILLSTEAD — lit core */
+.wordmark strong {
+  font-weight: 900;
+  color: var(--cyan-hot);
+  text-shadow: var(--glow-text);
 }
 
 .wordmark .line {
@@ -198,7 +201,22 @@ a { color: inherit; text-decoration: none; }
   padding-bottom: 0.08em; /* keep serif descenders from clipping */
 }
 
-.wordmark .line-inner { display: inline-block; }
+.wordmark .line-inner {
+  display: inline-block;
+  animation: power-up 1.3s steps(1, end) 0.35s both;
+}
+
+@keyframes power-up {
+  0%   { opacity: 0; }
+  6%   { opacity: 1; }
+  10%  { opacity: 0.25; }
+  16%  { opacity: 1; }
+  22%  { opacity: 0.4; }
+  26%  { opacity: 1; }
+  38%  { opacity: 0.7; }
+  42%  { opacity: 1; }
+  100% { opacity: 1; }
+}
 
 .layer-subject {
   z-index: 3;
@@ -460,6 +478,7 @@ a { color: inherit; text-decoration: none; }
   .hero-cue { animation: none; }
   .marquee-track { animation: none; }
   .pulse { animation: none; stroke-dashoffset: 6; opacity: 0.35; }
+  .wordmark .line-inner { animation: none; }
 }
 
 @media (max-width: 640px) {

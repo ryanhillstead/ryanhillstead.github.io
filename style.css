@@ -1,26 +1,45 @@
 /* ============================================================
    Ryan Hillstead — portfolio
-   Palette: paddock cream / warm ink / Ferrari red
+   Theme: TRON Legacy — void blue / glowing cyan / rogue orange
    ============================================================ */
 
 :root {
-  --cream: #f2efe9;        /* light blocks */
-  --cream-deep: #e9e4da;   /* raised surfaces on cream */
-  --ink: #141210;          /* dark blocks, text on cream */
-  --ink-soft: #201d19;     /* raised surfaces on ink */
-  --red: #e10600;          /* ferrari red accent */
-  --red-deep: #b30500;     /* hover red */
-  --muted-light: #8a857c;  /* secondary text on cream */
-  --muted-dark: #a39d92;   /* secondary text on ink */
-  --line-light: rgba(20, 18, 16, 0.16);
-  --line-dark: rgba(242, 239, 233, 0.16);
+  --void: #030a12;         /* page background */
+  --panel: #06131d;        /* raised surfaces: cards, chips, alt sections */
+  --cyan: #6fc3df;         /* primary accent */
+  --cyan-hot: #c8f6ff;     /* glow cores, bright headings */
+  --orange: #ff9d2e;       /* hover / interactive states ONLY */
+  --orange-hot: #ffd9a0;   /* orange glow cores */
+  --text: #d7e7ee;         /* body text */
+  --muted: #7a95a4;        /* secondary text */
+  --line: rgba(111, 195, 223, 0.22);
 
-  --font-heavy: "Anton", system-ui, sans-serif;
-  --font-serif: "Playfair Display", Georgia, serif;
-  --font-body: "Archivo", system-ui, sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --glow-text: 0 0 2px rgba(200, 246, 255, 0.9),
+               0 0 10px rgba(111, 195, 223, 0.55),
+               0 0 34px rgba(111, 195, 223, 0.35);
+  --glow-text-orange: 0 0 2px rgba(255, 217, 160, 0.9),
+                      0 0 10px rgba(255, 157, 46, 0.55),
+                      0 0 34px rgba(255, 157, 46, 0.35);
+  --glow-box: 0 0 12px rgba(111, 195, 223, 0.25),
+              0 0 32px rgba(111, 195, 223, 0.12);
+
+  --font-display: "Orbitron", system-ui, sans-serif;
+  --font-body: "Rajdhani", system-ui, sans-serif;
+  --font-mono: "Share Tech Mono", ui-monospace, monospace;
 
   --gutter: clamp(1.25rem, 5vw, 5rem);
+
+  /* legacy tokens — kept until every region is converted (Task 9 removes) */
+  --cream: #f2efe9;
+  --cream-deep: #e9e4da;
+  --ink: #141210;
+  --ink-soft: #201d19;
+  --red: #e10600;
+  --red-deep: #b30500;
+  --muted-light: #8a857c;
+  --muted-dark: #a39d92;
+  --line-light: rgba(20, 18, 16, 0.16);
+  --line-dark: rgba(242, 239, 233, 0.16);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -28,10 +47,11 @@
 html { scroll-behavior: smooth; }
 
 body {
-  background: var(--cream);
-  color: var(--ink);
+  background: var(--void);
+  color: var(--text);
   font-family: var(--font-body);
-  font-size: 1.0625rem;
+  font-weight: 500;
+  font-size: 1.125rem;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
@@ -40,7 +60,7 @@ body {
 .mono {
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
@@ -48,12 +68,12 @@ body {
 a { color: inherit; text-decoration: none; }
 
 :focus-visible {
-  outline: 2px solid var(--red);
+  outline: 2px solid var(--cyan);
   outline-offset: 3px;
   border-radius: 2px;
 }
 
-::selection { background: var(--red); color: var(--cream); }
+::selection { background: var(--cyan); color: var(--void); }
 
 /* ---------- nav ---------- */
 
@@ -67,23 +87,28 @@ a { color: inherit; text-decoration: none; }
   padding: 1.25rem var(--gutter);
 }
 
-/* chip pills stay legible over both cream and ink blocks */
 .nav-mark,
 .nav-links a {
   display: inline-block;
-  background: var(--cream);
-  border: 1px solid var(--line-light);
+  background: rgba(6, 19, 29, 0.82);
+  border: 1px solid var(--line);
   border-radius: 999px;
   padding: 0.5rem 1rem;
-  color: var(--ink);
-  transition: color 0.25s ease, background 0.25s ease;
+  color: var(--cyan);
+  box-shadow: var(--glow-box);
+  backdrop-filter: blur(6px);
+  transition: color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
 }
 
-.nav-mark { color: var(--red); }
+.nav-mark { color: var(--cyan-hot); text-shadow: var(--glow-text); }
 
 .nav-links { display: flex; gap: 0.5rem; }
 
-.nav-links a:hover { background: var(--ink); color: var(--cream); }
+.nav-links a:hover {
+  background: var(--cyan);
+  color: var(--void);
+  box-shadow: 0 0 18px rgba(111, 195, 223, 0.6);
+}
 
 /* ---------- hero ---------- */
 
@@ -397,15 +422,20 @@ a { color: inherit; text-decoration: none; }
 
 .footer-meta a:hover { color: var(--cream); }
 
-/* ---------- grain overlay ---------- */
+/* ---------- CRT scanline overlay ---------- */
 
-.grain {
+.scanlines {
   position: fixed;
   inset: 0;
   z-index: 100;
   pointer-events: none;
-  opacity: 0.04;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(200, 246, 255, 0.035) 0px,
+    rgba(200, 246, 255, 0.035) 1px,
+    transparent 1px,
+    transparent 3px
+  );
 }
 
 /* ---------- motion & responsive ---------- */

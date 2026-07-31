@@ -16,6 +16,7 @@
   --action-bright: #ffd9a0; /* hover glow cores */
   --text: #d7e7ee;          /* body text */
   --muted: #7a95a4;         /* secondary text */
+  --muted-strong: var(--muted); /* muted variant for surface/bg contexts; work theme's --muted already clears AA there, so no separate value is needed */
   --line: rgba(111, 195, 223, 0.22);
 
   --glow-text: 0 0 2px rgba(200, 246, 255, 0.9),
@@ -57,7 +58,8 @@
   --action: #b30500;
   --action-bright: #b30500;
   --text: #141210;
-  --muted: #8a857c;
+  --muted: #8a857c;         /* passes AA on --band (5.1:1); stays put for section-body/footer-meta */
+  --muted-strong: #68645d;  /* darker on --bg/--surface (5.1:1 / 5.6:1) for .mode-btn and .work-card p, which --muted fails there at 3.2:1 / 3.5:1 */
   --line: rgba(20, 18, 16, 0.16);
 
   --glow-text: none;
@@ -162,7 +164,7 @@ a { color: inherit; text-decoration: none; }
   appearance: none;
   border: 0;
   background: transparent;
-  color: var(--muted);
+  color: var(--muted-strong);
   font: inherit;
   padding: 0.4rem 0.85rem;
   border-radius: 999px;
@@ -552,7 +554,7 @@ a { color: inherit; text-decoration: none; }
   color: var(--surface-text);
 }
 
-.work-card p { margin-top: 0.75rem; color: var(--muted); }
+.work-card p { margin-top: 0.75rem; color: var(--muted-strong); }
 
 /* ---------- contact ---------- */
 
@@ -696,6 +698,39 @@ a { color: inherit; text-decoration: none; }
 
 :root[data-mode="home"] .subject-alt { display: none; }
 
+/* small mono captions: --accent's red measures ~4.33:1 on --bg and ~3.76:1 on
+   --band at this weight/size, under AA's 4.5:1 — the work theme's cyan clears
+   ~9.4-10:1 in the same spots, so home shouldn't be held to a lower bar.
+   --action is darker and clears --bg/--surface (6.23:1 / 6.74:1), but it is
+   *worse* than --accent on the near-black --band (2.61:1 vs 3.76:1): no red in
+   this palette can pass 4.5:1 against both the near-white and the near-black
+   backgrounds at once (the luminance --bg demands and the luminance --band
+   demands don't overlap). So captions on a light background move to
+   --action; captions on the dark band fall back to --band-text, the same
+   colour the section's own body copy already uses, since no red clears AA
+   there. */
+:root[data-mode="home"] .hero-eyebrow,
+:root[data-mode="home"] .section--void .section-label,
+:root[data-mode="home"] .work-meta,
+:root[data-mode="home"] .fg-chip-label {
+  color: var(--action);
+}
+
+:root[data-mode="home"] .section--panel .section-label {
+  color: var(--band-text);
+}
+
+:root[data-mode="home"] .hero-eyebrow .placeholder,
+:root[data-mode="home"] .section--void .placeholder {
+  color: var(--action);
+  border-color: var(--action);
+}
+
+:root[data-mode="home"] .section--panel .placeholder {
+  color: var(--band-text);
+  border-color: var(--band-text);
+}
+
 /* ---------- motion & responsive ---------- */
 
 @media (prefers-reduced-motion: reduce) {
@@ -714,6 +749,11 @@ a { color: inherit; text-decoration: none; }
   .fg-chip--2 { top: 44%; bottom: auto; right: 8vw; }
   .fg-plus { left: 6%; }
   .fg-plus--2 { right: 8%; }
+  /* even with the R—H mark hidden below, the toggle plus all three nav
+     links are still wider than a 390px viewport (measured: nav-links runs
+     ~30px past the right edge, clipping "Contact"), so the nav wraps to a
+     second row instead of silently overflowing. */
+  .nav { flex-wrap: wrap; row-gap: 0.5rem; }
   .nav-links { gap: 0.25rem; }
   .nav-links a { padding: 0.4rem 0.55rem; }
   /* the R—H mark is decorative and redundant with the mode toggle now

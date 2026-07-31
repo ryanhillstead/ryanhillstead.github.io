@@ -43,7 +43,7 @@
     <section class="hero" aria-label="Intro">
 
       <div class="layer layer-bg" data-depth-x="-14" data-depth-y="-8" aria-hidden="true">
-        <svg class="layer-img" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+        <svg class="layer-img" data-side="work" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
           <defs>
             <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0" stop-color="#020609"/>
@@ -136,7 +136,7 @@
       </div>
 
       <div class="hero-title" data-depth-x="-26" data-depth-y="-14">
-        <p class="hero-eyebrow mono" data-intro="eyebrow">Software Developer · Power Industry · Spanish Fork, UT</p>
+        <p class="hero-eyebrow mono" data-side="work" data-intro="eyebrow">Software Developer · Power Industry · Spanish Fork, UT</p>
         <h1 class="wordmark">
           <span class="line"><span class="line-inner" data-intro="line"><em>Ryan</em> <strong>Hillstead</strong></span></span>
         </h1>
@@ -152,12 +152,12 @@
       <div class="layer layer-fg" data-depth-x="52" data-depth-y="30" aria-hidden="true">
         <span class="fg-plus mono" data-intro="fg">+</span>
         <span class="fg-plus fg-plus--2 mono" data-intro="fg">+</span>
-        <div class="fg-chip fg-chip--1 mono" data-intro="fg">
+        <div class="fg-chip fg-chip--1 mono" data-side="work" data-intro="fg">
           <span class="fg-chip-label">Ident</span>
           <span>Spanish Fork, Utah</span>
           <span class="fg-chip-sub">40.11°N — 111.65°W</span>
         </div>
-        <div class="fg-chip fg-chip--2 mono" data-intro="fg">
+        <div class="fg-chip fg-chip--2 mono" data-side="work" data-intro="fg">
           <span class="fg-chip-label">Active Program</span>
           <span>Collectors Vault</span>
           <span class="fg-chip-sub">TypeScript · 2026</span>
@@ -168,7 +168,7 @@
     </section>
 
     <!-- dark double-row marquee band -->
-    <aside class="marquee-band" aria-hidden="true">
+    <aside class="marquee-band" data-side="work" aria-hidden="true">
       <div class="marquee marquee--outline">
         <div class="marquee-track">
           <span>I fight for the users&nbsp;·&nbsp;</span><span>I fight for the users&nbsp;·&nbsp;</span>
@@ -185,10 +185,10 @@
 
     <section class="section section--panel section--statement" id="about">
       <p class="section-label mono reveal">R—H · What I do</p>
-      <h2 class="statement reveal">
+      <h2 class="statement reveal" data-side="work">
         I build software for the people who power <em>The Grid.</em>
       </h2>
-      <p class="section-body reveal">
+      <p class="section-body reveal" data-side="work">
         I'm a software developer in Spanish Fork, Utah, working in the power
         industry — building web apps and internal tools for the people who
         generate and deliver electricity across the West. Off the clock I'm
@@ -198,7 +198,26 @@
 
     <section class="section section--void" id="work">
       <p class="section-label mono reveal">Selected work</p>
-      <ul class="work-list">
+      <div class="domain" data-side="work">
+        <div class="domain-item reveal">
+          <h3 class="mono">Operations, not demos</h3>
+          <p>The software I write in this industry runs against real operational
+          data. When a tool is wrong, someone downstream has to catch it, so
+          correctness and traceability matter more than novelty.</p>
+        </div>
+        <div class="domain-item reveal">
+          <h3 class="mono">Internal tools</h3>
+          <p>Most of it is the unglamorous middle: moving data between systems that
+          were never designed to talk, turning spreadsheets into something
+          queryable, and giving people interfaces they can trust.</p>
+        </div>
+        <div class="domain-item reveal">
+          <h3 class="mono">Built to be handed over</h3>
+          <p>These tools outlive the sprint that produced them. I write them to be
+          read and maintained by whoever comes next, not just to work today.</p>
+        </div>
+      </div>
+      <ul class="work-list" data-side="home">
         <li class="reveal">
           <a class="work-card" href="https://github.com/ryanhillstead/collectors-vault">
             <span class="mono work-meta">2026 · TypeScript</span>

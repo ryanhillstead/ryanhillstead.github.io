@@ -74,6 +74,11 @@
   --font-serif: "Playfair Display", Georgia, serif;
 }
 
+/* content sides: hide the INACTIVE side only, so the active side keeps
+   whatever display its own rules give it */
+:root[data-mode="work"] [data-side="home"],
+:root[data-mode="home"] [data-side="work"] { display: none; }
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 html { scroll-behavior: smooth; }
@@ -464,6 +469,44 @@ a { color: inherit; text-decoration: none; }
   font-style: normal;
   color: var(--accent-bright);
   text-shadow: var(--glow-text);
+}
+
+/* ---------- domain (work side) ---------- */
+
+.domain {
+  max-width: 60rem;
+  margin: 0 auto;
+  display: grid;
+  gap: 2.5rem;
+}
+
+.domain-item {
+  border-left: 2px solid var(--accent);
+  box-shadow: var(--glow-box);
+  padding: 0.25rem 0 0.25rem 1.5rem;
+}
+
+.domain-item h3 {
+  color: var(--accent);
+  text-shadow: var(--glow-text);
+  font-size: 0.8rem;
+  margin-bottom: 0.6rem;
+}
+
+.domain-item p { color: var(--muted); max-width: 52ch; }
+
+/* ---------- placeholder (home side, filled in by Ryan) ---------- */
+
+.placeholder {
+  display: inline-block;
+  border: 1px dashed var(--accent);
+  border-radius: 3px;
+  padding: 0.1em 0.45em;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  text-transform: none;
+  letter-spacing: 0.02em;
 }
 
 /* ---------- work ---------- */

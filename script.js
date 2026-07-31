@@ -93,10 +93,6 @@ if (reducedMotion) {
   });
 }
 
-/* ---------- footer year ---------- */
-
-document.getElementById("year").textContent = new Date().getFullYear();
-
 /* ---------- cursor reveal ----------
    A soft circular mask on .subject-alt follows the cursor, revealing the
    TRON program layer under the headshot. The radius eases in when the
@@ -109,6 +105,8 @@ const stack = document.querySelector(".subject-stack");
 const hero = document.querySelector(".hero");
 
 if (alt && stack && hero && finePointer) {
+  if (alt.dataset.src) alt.src = alt.dataset.src;
+
   const REVEAL_RADIUS = 190; // px
   const pointer = { x: 0, y: 0 };
   let targetRadius = 0;
@@ -136,3 +134,8 @@ if (alt && stack && hero && finePointer) {
     alt.style.setProperty("--reveal-r", `${radius}px`);
   });
 }
+
+/* ---------- footer year ---------- */
+
+const yearEl = document.getElementById("year");
+if (yearEl) yearEl.textContent = new Date().getFullYear();

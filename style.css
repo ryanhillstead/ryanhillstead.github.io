@@ -381,9 +381,9 @@ a { color: inherit; text-decoration: none; }
 
 .section { padding: clamp(5rem, 14vh, 10rem) var(--gutter); border-top: 1px solid var(--line); }
 
-.section--void { background: var(--bg); }
+.section--void { background: var(--bg); color: var(--text); }
 
-.section--panel { background: var(--surface); }
+.section--panel { background: var(--surface); color: var(--surface-text); }
 
 .section-label {
   color: var(--accent);
@@ -412,7 +412,7 @@ a { color: inherit; text-decoration: none; }
   text-align: center;
   max-width: 22ch;
   margin: 0 auto;
-  color: var(--text);
+  color: inherit;
 }
 
 .statement em {
@@ -525,6 +525,88 @@ a { color: inherit; text-decoration: none; }
     transparent 3px
   );
 }
+
+/* ---------- home-mode structural overrides ----------
+   Colour comes from the token block; these are the shape differences —
+   the TRON theme's outlined/stroked type and CRT overlay have no place
+   in the warm theme. */
+
+:root[data-mode="home"] .scanlines { display: none; }
+
+/* wordmark: Playfair italic + Anton, no outline stroke */
+:root[data-mode="home"] .wordmark {
+  font-family: var(--font-body);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+:root[data-mode="home"] .wordmark em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 600;
+  color: var(--text);
+  -webkit-text-stroke: 0;
+  letter-spacing: 0;
+}
+
+:root[data-mode="home"] .wordmark strong {
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  color: var(--text);
+  letter-spacing: 0.02em;
+}
+
+/* marquee: solid red band, serif italic first row */
+:root[data-mode="home"] .marquee-band {
+  background: var(--accent);
+  color: var(--bg);
+  border-top: 0;
+  border-bottom: 0;
+  box-shadow: none;
+}
+
+:root[data-mode="home"] .marquee--outline {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 600;
+  text-transform: none;
+  color: var(--bg);
+  -webkit-text-stroke: 0;
+}
+
+:root[data-mode="home"] .marquee--heavy {
+  color: var(--surface);
+}
+
+:root[data-mode="home"] .marquee-band--footer .marquee--heavy {
+  color: var(--bg);
+}
+
+/* statement accent: serif italic red, not a glowing core */
+:root[data-mode="home"] .statement em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 600;
+  text-transform: lowercase;
+  color: var(--accent);
+  letter-spacing: 0;
+  font-size: 1.06em;
+}
+
+/* contact link: serif italic red */
+:root[data-mode="home"] .contact-link {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+:root[data-mode="home"] .pulse { display: none; }
+
+:root[data-mode="home"] .wordmark .line-inner { animation: none; }
+
+:root[data-mode="home"] .subject-alt { display: none; }
 
 /* ---------- motion & responsive ---------- */
 

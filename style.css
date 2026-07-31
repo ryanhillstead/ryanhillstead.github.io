@@ -117,7 +117,7 @@ a { color: inherit; text-decoration: none; }
   height: 100svh;
   min-height: 620px;
   overflow: hidden;
-  background: var(--cream);
+  background: var(--void);
 }
 
 /* every layer overscans by 6% so parallax never exposes an edge */
@@ -136,6 +136,21 @@ a { color: inherit; text-decoration: none; }
 }
 
 .layer-bg { z-index: 1; }
+
+/* energy pulses: pathLength=100 normalizes both lines, so a 100-period
+   dash pattern sweeps each line exactly once per loop */
+.pulse {
+  stroke-dasharray: 12 88;
+  stroke-dashoffset: 0;
+  animation: grid-pulse 7s linear infinite;
+}
+
+.pulse--2 { animation-delay: 3.5s; }
+
+@keyframes grid-pulse {
+  from { stroke-dashoffset: 100; }
+  to   { stroke-dashoffset: 0; }
+}
 
 .hero-title {
   position: absolute;
@@ -444,6 +459,7 @@ a { color: inherit; text-decoration: none; }
   html { scroll-behavior: auto; }
   .hero-cue { animation: none; }
   .marquee-track { animation: none; }
+  .pulse { animation: none; stroke-dashoffset: 6; opacity: 0.35; }
 }
 
 @media (max-width: 640px) {

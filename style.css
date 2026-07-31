@@ -230,9 +230,8 @@ a { color: inherit; text-decoration: none; }
   height: 74%;
   object-fit: contain;
   object-position: bottom center;
-  filter: url(#tron-grade)
-          drop-shadow(0 0 18px rgba(111, 195, 223, 0.5))
-          drop-shadow(0 0 60px rgba(111, 195, 223, 0.28));
+  filter: drop-shadow(0 0 18px rgba(111, 195, 223, 0.75))
+          drop-shadow(0 0 55px rgba(111, 195, 223, 0.4));
 }
 
 .layer-fg { z-index: 4; }

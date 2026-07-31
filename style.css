@@ -27,8 +27,35 @@
   --font-display: "Orbitron", system-ui, sans-serif;
   --font-body: "Rajdhani", system-ui, sans-serif;
   --font-mono: "Share Tech Mono", ui-monospace, monospace;
+  --font-serif: var(--font-display);
 
   --gutter: clamp(1.25rem, 5vw, 5rem);
+}
+
+/* ---------- home theme ----------
+   Same token vocabulary, warm palette. The glow tokens resolve to `none`,
+   which is what switches the neon off across the whole sheet in one move. */
+
+:root[data-mode="home"] {
+  --bg: #f2efe9;
+  --surface: #141210;
+  --surface-text: #f2efe9;
+  --accent: #e10600;
+  --accent-bright: #e10600;
+  --action: #b30500;
+  --action-bright: #b30500;
+  --text: #141210;
+  --muted: #8a857c;
+  --line: rgba(20, 18, 16, 0.16);
+
+  --glow-text: none;
+  --glow-action: none;
+  --glow-box: none;
+
+  --font-display: "Anton", system-ui, sans-serif;
+  --font-body: "Archivo", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --font-serif: "Playfair Display", Georgia, serif;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }

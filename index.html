@@ -15,6 +15,18 @@
 </head>
 <body>
 
+  <!-- SVG filter: dark blue-cyan duotone for the hero headshot -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <filter id="tron-grade" color-interpolation-filters="sRGB">
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncR type="table" tableValues="0.01 0.12 0.5 0.78"/>
+        <feFuncG type="table" tableValues="0.04 0.3 0.72 0.96"/>
+        <feFuncB type="table" tableValues="0.07 0.42 0.85 1"/>
+      </feComponentTransfer>
+    </filter>
+  </svg>
+
   <header class="nav" data-intro="nav">
     <a class="nav-mark mono" href="#top">R—H</a>
     <nav class="nav-links mono" aria-label="Site">
@@ -144,12 +156,12 @@
         <span class="fg-plus mono" data-intro="fg">+</span>
         <span class="fg-plus fg-plus--2 mono" data-intro="fg">+</span>
         <div class="fg-chip fg-chip--1 mono" data-intro="fg">
-          <span class="fg-chip-label">Based in</span>
+          <span class="fg-chip-label">Ident</span>
           <span>Spanish Fork, Utah</span>
           <span class="fg-chip-sub">40.11°N — 111.65°W</span>
         </div>
         <div class="fg-chip fg-chip--2 mono" data-intro="fg">
-          <span class="fg-chip-label">Now building</span>
+          <span class="fg-chip-label">Active Program</span>
           <span>Collectors Vault</span>
           <span class="fg-chip-sub">TypeScript · 2026</span>
         </div>

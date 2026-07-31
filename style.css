@@ -230,7 +230,9 @@ a { color: inherit; text-decoration: none; }
   height: 74%;
   object-fit: contain;
   object-position: bottom center;
-  filter: drop-shadow(0 30px 60px rgba(20, 18, 16, 0.28));
+  filter: url(#tron-grade)
+          drop-shadow(0 0 18px rgba(111, 195, 223, 0.5))
+          drop-shadow(0 0 60px rgba(111, 195, 223, 0.28));
 }
 
 .layer-fg { z-index: 4; }
@@ -239,7 +241,8 @@ a { color: inherit; text-decoration: none; }
   position: absolute;
   top: 58%;
   left: 14%;
-  color: var(--red);
+  color: var(--cyan);
+  text-shadow: var(--glow-text);
   font-size: 1.1rem;
 }
 
@@ -250,17 +253,17 @@ a { color: inherit; text-decoration: none; }
   display: flex;
   flex-direction: column;
   gap: 0.15rem;
-  background: var(--cream);
-  border: 1px solid var(--line-light);
-  border-radius: 10px;
+  background: rgba(6, 19, 29, 0.82);
+  border: 1px solid var(--line);
+  border-radius: 4px;
   padding: 0.8rem 1rem;
-  color: var(--ink);
-  box-shadow: 0 12px 30px rgba(20, 18, 16, 0.08);
+  color: var(--text);
+  box-shadow: var(--glow-box);
 }
 
-.fg-chip-label { color: var(--red); }
+.fg-chip-label { color: var(--cyan); text-shadow: 0 0 8px rgba(111, 195, 223, 0.5); }
 
-.fg-chip-sub { color: var(--muted-light); }
+.fg-chip-sub { color: var(--muted); }
 
 /* the fg layer overscans 6% each side; offsets compensate so chips
    sit at the visual gutter */
@@ -273,7 +276,7 @@ a { color: inherit; text-decoration: none; }
   z-index: 5;
   bottom: 1.5rem;
   left: var(--gutter);
-  color: var(--muted-light);
+  color: var(--cyan);
   animation: cue-drift 2.6s ease-in-out infinite;
 }
 

@@ -133,10 +133,28 @@
             </g>
           </g>
         </svg>
+
+        <svg class="layer-img" data-side="home" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+          <rect width="1440" height="900" fill="#f2efe9"/>
+          <!-- topographic contour loops -->
+          <g fill="none" stroke="#141210" stroke-opacity="0.08" stroke-width="1.2">
+            <path d="M-60 180 Q 220 120 430 190 T 860 170 T 1300 210 T 1520 180"/>
+            <path d="M-60 240 Q 260 170 470 250 T 880 230 T 1320 270 T 1520 240"/>
+            <path d="M-60 620 Q 300 560 560 630 T 1040 610 T 1500 650"/>
+            <path d="M-60 690 Q 340 620 620 700 T 1100 680 T 1500 720"/>
+            <path d="M180 40 Q 320 90 260 170 Q 210 240 80 200 Q -20 160 40 90 Q 90 30 180 40 Z"/>
+            <path d="M1240 460 Q 1380 500 1330 580 Q 1280 650 1150 610 Q 1050 570 1110 500 Q 1160 440 1240 460 Z"/>
+          </g>
+          <!-- ground swell -->
+          <path d="M0 790 Q 480 760 900 785 T 1440 775 L1440 900 L0 900 Z" fill="#e9e4da"/>
+        </svg>
       </div>
 
       <div class="hero-title" data-depth-x="-26" data-depth-y="-14">
         <p class="hero-eyebrow mono" data-side="work" data-intro="eyebrow">Software Developer · Power Industry · Spanish Fork, UT</p>
+        <p class="hero-eyebrow mono" data-side="home">
+          Spanish Fork, Utah · <span class="placeholder">[Ryan: home-side tagline]</span>
+        </p>
         <h1 class="wordmark">
           <span class="line"><span class="line-inner" data-intro="line"><em>Ryan</em> <strong>Hillstead</strong></span></span>
         </h1>
@@ -183,6 +201,22 @@
       </div>
     </aside>
 
+    <!-- home marquee band -->
+    <aside class="marquee-band" data-side="home" aria-hidden="true">
+      <div class="marquee marquee--outline">
+        <div class="marquee-track">
+          <span>From idea to production&nbsp;·&nbsp;</span><span>From idea to production&nbsp;·&nbsp;</span>
+          <span>From idea to production&nbsp;·&nbsp;</span><span>From idea to production&nbsp;·&nbsp;</span>
+        </div>
+      </div>
+      <div class="marquee marquee--heavy marquee--reverse">
+        <div class="marquee-track">
+          <span>Design — Code — Ship —&nbsp;</span><span>Design — Code — Ship —&nbsp;</span>
+          <span>Design — Code — Ship —&nbsp;</span><span>Design — Code — Ship —&nbsp;</span>
+        </div>
+      </div>
+    </aside>
+
     <section class="section section--panel section--statement" id="about">
       <p class="section-label mono reveal">R—H · What I do</p>
       <h2 class="statement reveal" data-side="work">
@@ -194,10 +228,17 @@
         generate and deliver electricity across the West. Off the clock I'm
         usually tinkering with a side project or out in the Utah desert.
       </p>
+      <h2 class="statement reveal" data-side="home">
+        Off the clock I'm <em>building</em> things.
+      </h2>
+      <p class="section-body reveal" data-side="home">
+        <span class="placeholder">[Ryan: a few sentences about your life outside work — what you do for fun, what you're into, family if you want it here]</span>
+      </p>
     </section>
 
     <section class="section section--void" id="work">
-      <p class="section-label mono reveal">Selected work</p>
+      <p class="section-label mono reveal" data-side="work">What the work involves</p>
+      <p class="section-label mono reveal" data-side="home">Selected work</p>
       <div class="domain" data-side="work">
         <div class="domain-item reveal">
           <h3 class="mono">Operations, not demos</h3>

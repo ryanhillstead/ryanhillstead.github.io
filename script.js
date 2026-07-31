@@ -139,3 +139,31 @@ if (alt && stack && hero && finePointer) {
 
 const yearEl = document.getElementById("year");
 if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+/* ---------- work / home mode toggle ----------
+   Flips :root's data-mode, which swaps both palette and content. The
+   ScrollTrigger work is not optional: reveal triggers for the hidden side
+   were built against display:none boxes, so without a refresh (and a
+   clearProps on what just became visible) sections can strand at opacity 0. */
+
+const modeButtons = Array.from(document.querySelectorAll("[data-mode-set]"));
+
+function setMode(mode) {
+  document.documentElement.dataset.mode = mode;
+
+  for (const btn of modeButtons) {
+    const active = btn.dataset.modeSet === mode;
+    btn.classList.toggle("is-active", active);
+    btn.setAttribute("aria-checked", String(active));
+  }
+
+  gsap.set(`[data-side="${mode}"] .reveal, [data-side="${mode}"].reveal`, {
+    clearProps: "all",
+  });
+
+  if (window.ScrollTrigger) ScrollTrigger.refresh();
+}
+
+for (const btn of modeButtons) {
+  btn.addEventListener("click", () => setMode(btn.dataset.modeSet));
+}

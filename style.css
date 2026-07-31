@@ -142,6 +142,36 @@ a { color: inherit; text-decoration: none; }
   box-shadow: var(--nav-hover-glow);
 }
 
+.nav-left { display: flex; align-items: center; gap: 0.5rem; }
+
+.mode-toggle {
+  display: flex;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 3px;
+  box-shadow: var(--glow-box);
+}
+
+.mode-btn {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.mode-btn.is-active {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.mode-btn:not(.is-active):hover { color: var(--accent); }
+
 /* ---------- hero ---------- */
 
 .hero {
@@ -631,6 +661,7 @@ a { color: inherit; text-decoration: none; }
   .marquee-track { animation: none; }
   .pulse { animation: none; stroke-dashoffset: 6; opacity: 0.35; }
   .wordmark .line-inner { animation: none; }
+  .mode-btn { transition: none; }
 }
 
 @media (max-width: 640px) {
@@ -640,7 +671,12 @@ a { color: inherit; text-decoration: none; }
   .fg-chip--2 { top: 44%; bottom: auto; right: 8vw; }
   .fg-plus { left: 6%; }
   .fg-plus--2 { right: 8%; }
-  .nav-links { gap: 0.35rem; }
-  .nav-links a, .nav-mark { padding: 0.4rem 0.7rem; }
+  .nav-links { gap: 0.25rem; }
+  .nav-links a { padding: 0.4rem 0.55rem; }
+  /* the R—H mark is decorative and redundant with the mode toggle now
+     sharing the left cluster; below 640px there isn't room for toggle +
+     mark + all three nav links without wrapping/clipping, so it's hidden. */
+  .nav-mark { display: none; }
+  .mode-btn { padding: 0.4rem 0.65rem; }
   .footer-meta { gap: 1.25rem; }
 }

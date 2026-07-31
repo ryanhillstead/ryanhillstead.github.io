@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-mode="work">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,7 +16,13 @@
 <body>
 
   <header class="nav" data-intro="nav">
-    <a class="nav-mark mono" href="#top">R—H</a>
+    <div class="nav-left">
+      <div class="mode-toggle" role="radiogroup" aria-label="Site mode">
+        <button class="mode-btn is-active mono" role="radio" aria-checked="true" data-mode-set="work">Work</button>
+        <button class="mode-btn mono" role="radio" aria-checked="false" data-mode-set="home">Home</button>
+      </div>
+      <a class="nav-mark mono" href="#top">R—H</a>
+    </div>
     <nav class="nav-links mono" aria-label="Site">
       <a href="#work">Work</a>
       <a href="#about">About</a>

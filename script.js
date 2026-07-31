@@ -96,3 +96,43 @@ if (reducedMotion) {
 /* ---------- footer year ---------- */
 
 document.getElementById("year").textContent = new Date().getFullYear();
+
+/* ---------- cursor reveal ----------
+   A soft circular mask on .subject-alt follows the cursor, revealing the
+   TRON program layer under the headshot. The radius eases in when the
+   pointer is over the hero and out when it leaves. Mask coordinates are
+   read from the stack's live bounding rect, so they stay correct while the
+   parallax transform moves the layer. */
+
+const alt = document.querySelector(".subject-alt");
+const stack = document.querySelector(".subject-stack");
+const hero = document.querySelector(".hero");
+
+if (alt && stack && hero && finePointer) {
+  const REVEAL_RADIUS = 190; // px
+  const pointer = { x: 0, y: 0 };
+  let targetRadius = 0;
+  let radius = 0;
+
+  window.addEventListener("mousemove", (e) => {
+    pointer.x = e.clientX;
+    pointer.y = e.clientY;
+    const heroRect = hero.getBoundingClientRect();
+    const inHero = e.clientY >= heroRect.top && e.clientY <= heroRect.bottom;
+    targetRadius = inHero ? REVEAL_RADIUS : 0;
+  });
+
+  document.documentElement.addEventListener("mouseleave", () => {
+    targetRadius = 0;
+  });
+
+  gsap.ticker.add((time, deltaTime) => {
+    const t = 1 - Math.exp((-6 * deltaTime) / 1000);
+    radius += (targetRadius - radius) * t;
+
+    const rect = stack.getBoundingClientRect();
+    alt.style.setProperty("--mx", `${pointer.x - rect.left}px`);
+    alt.style.setProperty("--my", `${pointer.y - rect.top}px`);
+    alt.style.setProperty("--reveal-r", `${radius}px`);
+  });
+}

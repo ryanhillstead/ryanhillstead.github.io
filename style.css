@@ -225,13 +225,39 @@ a { color: inherit; text-decoration: none; }
   align-items: flex-end;
 }
 
-.layer-subject .layer-img {
+.subject-stack {
+  position: relative;
   width: min(84vh, 94vw);
   height: 74%;
+}
+
+.subject-stack .layer-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   object-position: bottom center;
+}
+
+/* Ryan, rim-lit by the Grid (no colour grade — see Task 4) */
+.subject-base {
   filter: drop-shadow(0 0 18px rgba(111, 195, 223, 0.75))
           drop-shadow(0 0 55px rgba(111, 195, 223, 0.4));
+}
+
+/* the program underneath — revealed in a soft circle under the cursor.
+   --reveal-r is driven from script.js; 0 means fully hidden. */
+.subject-alt {
+  --mx: 50%;
+  --my: 50%;
+  --reveal-r: 0px;
+  filter: drop-shadow(0 0 22px rgba(255, 157, 46, 0.45))
+          drop-shadow(0 0 70px rgba(255, 157, 46, 0.22));
+  -webkit-mask-image: radial-gradient(circle var(--reveal-r) at var(--mx) var(--my),
+                                      #000 0 62%, transparent 100%);
+  mask-image: radial-gradient(circle var(--reveal-r) at var(--mx) var(--my),
+                              #000 0 62%, transparent 100%);
 }
 
 .layer-fg { z-index: 4; }
@@ -496,7 +522,7 @@ a { color: inherit; text-decoration: none; }
 
 @media (max-width: 640px) {
   .hero-title { padding-top: 16svh; }
-  .layer-subject .layer-img { width: 98vw; height: 62%; }
+  .subject-stack { width: 98vw; height: 62%; }
   .fg-chip--2 { top: auto; bottom: 26%; right: 8vw; }
   .fg-chip--1 { left: 8vw; }
   .fg-plus { left: 6%; }

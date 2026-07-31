@@ -390,11 +390,12 @@ a { color: inherit; text-decoration: none; }
 .work-card {
   display: block;
   width: min(34rem, 100%);
-  background: #faf8f4;
-  border: 1px solid var(--line-light);
-  border-top: 3px solid var(--ink);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--cyan);
+  box-shadow: var(--glow-box);
   padding: 2rem;
-  transition: border-top-color 0.3s ease, transform 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .work-list li + li { margin-top: 3rem; }
@@ -402,25 +403,26 @@ a { color: inherit; text-decoration: none; }
 .work-card--right { margin-left: auto; }
 
 .work-card:hover {
-  border-top-color: var(--red);
+  border-top-color: var(--orange);
+  box-shadow: 0 0 16px rgba(255, 157, 46, 0.28), 0 0 44px rgba(255, 157, 46, 0.12);
   transform: translateY(-4px);
 }
 
-.work-meta { color: var(--red); }
+.work-meta { color: var(--cyan); transition: color 0.3s ease; }
+
+.work-card:hover .work-meta { color: var(--orange); text-shadow: var(--glow-text-orange); }
 
 .work-card h3 {
-  font-family: var(--font-heavy);
-  font-weight: 400;
+  font-family: var(--font-display);
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.01em;
-  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  letter-spacing: 0.02em;
+  font-size: clamp(1.3rem, 2.6vw, 1.9rem);
   margin-top: 0.5rem;
+  color: var(--text);
 }
 
-.work-card p {
-  margin-top: 0.75rem;
-  color: var(--muted-light);
-}
+.work-card p { margin-top: 0.75rem; color: var(--muted); }
 
 /* ---------- contact ---------- */
 

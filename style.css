@@ -4,22 +4,23 @@
    ============================================================ */
 
 :root {
-  --void: #030a12;         /* page background */
-  --panel: #06131d;        /* raised surfaces: cards, chips, alt sections */
-  --cyan: #6fc3df;         /* primary accent */
-  --cyan-hot: #c8f6ff;     /* glow cores, bright headings */
-  --orange: #ff9d2e;       /* hover / interactive states ONLY */
-  --orange-hot: #ffd9a0;   /* orange glow cores */
-  --text: #d7e7ee;         /* body text */
-  --muted: #7a95a4;        /* secondary text */
+  --bg: #030a12;            /* page background */
+  --surface: #06131d;       /* raised surfaces: cards, chips, alt sections */
+  --surface-text: #d7e7ee;  /* text on --surface */
+  --accent: #6fc3df;        /* primary accent */
+  --accent-bright: #c8f6ff; /* glow cores, bright headings */
+  --action: #ff9d2e;        /* hover / interactive state */
+  --action-bright: #ffd9a0; /* hover glow cores */
+  --text: #d7e7ee;          /* body text */
+  --muted: #7a95a4;         /* secondary text */
   --line: rgba(111, 195, 223, 0.22);
 
   --glow-text: 0 0 2px rgba(200, 246, 255, 0.9),
                0 0 10px rgba(111, 195, 223, 0.55),
                0 0 34px rgba(111, 195, 223, 0.35);
-  --glow-text-orange: 0 0 2px rgba(255, 217, 160, 0.9),
-                      0 0 10px rgba(255, 157, 46, 0.55),
-                      0 0 34px rgba(255, 157, 46, 0.35);
+  --glow-action: 0 0 2px rgba(255, 217, 160, 0.9),
+                 0 0 10px rgba(255, 157, 46, 0.55),
+                 0 0 34px rgba(255, 157, 46, 0.35);
   --glow-box: 0 0 12px rgba(111, 195, 223, 0.25),
               0 0 32px rgba(111, 195, 223, 0.12);
 
@@ -35,7 +36,7 @@
 html { scroll-behavior: smooth; }
 
 body {
-  background: var(--void);
+  background: var(--bg);
   color: var(--text);
   font-family: var(--font-body);
   font-weight: 500;
@@ -56,12 +57,12 @@ body {
 a { color: inherit; text-decoration: none; }
 
 :focus-visible {
-  outline: 2px solid var(--cyan);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
   border-radius: 2px;
 }
 
-::selection { background: var(--cyan); color: var(--void); }
+::selection { background: var(--accent); color: var(--bg); }
 
 /* ---------- nav ---------- */
 
@@ -82,19 +83,19 @@ a { color: inherit; text-decoration: none; }
   border: 1px solid var(--line);
   border-radius: 999px;
   padding: 0.5rem 1rem;
-  color: var(--cyan);
+  color: var(--accent);
   box-shadow: var(--glow-box);
   backdrop-filter: blur(6px);
   transition: color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
 }
 
-.nav-mark { color: var(--cyan-hot); text-shadow: var(--glow-text); }
+.nav-mark { color: var(--accent-bright); text-shadow: var(--glow-text); }
 
 .nav-links { display: flex; gap: 0.5rem; }
 
 .nav-links a:hover {
-  background: var(--cyan);
-  color: var(--void);
+  background: var(--accent);
+  color: var(--bg);
   box-shadow: 0 0 18px rgba(111, 195, 223, 0.6);
 }
 
@@ -105,7 +106,7 @@ a { color: inherit; text-decoration: none; }
   height: 100svh;
   min-height: 620px;
   overflow: hidden;
-  background: var(--void);
+  background: var(--bg);
 }
 
 /* every layer overscans by 6% so parallax never exposes an edge */
@@ -155,7 +156,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 .hero-eyebrow {
-  color: var(--cyan);
+  color: var(--accent);
   text-shadow: 0 0 8px rgba(111, 195, 223, 0.5);
   margin-bottom: 1rem;
 }
@@ -173,13 +174,13 @@ a { color: inherit; text-decoration: none; }
 .wordmark em {
   font-style: normal;
   color: transparent;
-  -webkit-text-stroke: 1.5px var(--cyan);
+  -webkit-text-stroke: 1.5px var(--accent);
 }
 
 /* HILLSTEAD — lit core */
 .wordmark strong {
   font-weight: 900;
-  color: var(--cyan-hot);
+  color: var(--accent-bright);
   text-shadow: var(--glow-text);
 }
 
@@ -254,7 +255,7 @@ a { color: inherit; text-decoration: none; }
   position: absolute;
   top: 58%;
   left: 14%;
-  color: var(--cyan);
+  color: var(--accent);
   text-shadow: var(--glow-text);
   font-size: 1.1rem;
 }
@@ -274,7 +275,7 @@ a { color: inherit; text-decoration: none; }
   box-shadow: var(--glow-box);
 }
 
-.fg-chip-label { color: var(--cyan); text-shadow: 0 0 8px rgba(111, 195, 223, 0.5); }
+.fg-chip-label { color: var(--accent); text-shadow: 0 0 8px rgba(111, 195, 223, 0.5); }
 
 .fg-chip-sub { color: var(--muted); }
 
@@ -289,7 +290,7 @@ a { color: inherit; text-decoration: none; }
   z-index: 5;
   bottom: 1.5rem;
   left: var(--gutter);
-  color: var(--cyan);
+  color: var(--accent);
   animation: cue-drift 2.6s ease-in-out infinite;
 }
 
@@ -301,8 +302,8 @@ a { color: inherit; text-decoration: none; }
 /* ---------- marquee bands ---------- */
 
 .marquee-band {
-  background: var(--void);
-  color: var(--cyan);
+  background: var(--bg);
+  color: var(--accent);
   padding: clamp(1.2rem, 3vh, 2.2rem) 0;
   overflow: hidden;
   border-top: 1px solid var(--line);
@@ -329,7 +330,7 @@ a { color: inherit; text-decoration: none; }
   font-size: clamp(1.9rem, 4.8vw, 3.6rem);
   line-height: 1.1;
   color: transparent;
-  -webkit-text-stroke: 1px var(--cyan);
+  -webkit-text-stroke: 1px var(--accent);
 }
 
 .marquee--heavy {
@@ -338,7 +339,7 @@ a { color: inherit; text-decoration: none; }
   text-transform: uppercase;
   font-size: clamp(2rem, 5.2vw, 4rem);
   line-height: 1.1;
-  color: var(--cyan-hot);
+  color: var(--accent-bright);
   text-shadow: var(--glow-text);
 }
 
@@ -353,12 +354,12 @@ a { color: inherit; text-decoration: none; }
 
 .section { padding: clamp(5rem, 14vh, 10rem) var(--gutter); border-top: 1px solid var(--line); }
 
-.section--void { background: var(--void); }
+.section--void { background: var(--bg); }
 
-.section--panel { background: var(--panel); }
+.section--panel { background: var(--surface); }
 
 .section-label {
-  color: var(--cyan);
+  color: var(--accent);
   text-shadow: 0 0 8px rgba(111, 195, 223, 0.5);
   margin-bottom: 2rem;
   text-align: center;
@@ -389,7 +390,7 @@ a { color: inherit; text-decoration: none; }
 
 .statement em {
   font-style: normal;
-  color: var(--cyan-hot);
+  color: var(--accent-bright);
   text-shadow: var(--glow-text);
 }
 
@@ -404,9 +405,9 @@ a { color: inherit; text-decoration: none; }
 .work-card {
   display: block;
   width: min(34rem, 100%);
-  background: var(--panel);
+  background: var(--surface);
   border: 1px solid var(--line);
-  border-top: 3px solid var(--cyan);
+  border-top: 3px solid var(--accent);
   box-shadow: var(--glow-box);
   padding: 2rem;
   transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
@@ -417,14 +418,14 @@ a { color: inherit; text-decoration: none; }
 .work-card--right { margin-left: auto; }
 
 .work-card:hover {
-  border-top-color: var(--orange);
+  border-top-color: var(--action);
   box-shadow: 0 0 16px rgba(255, 157, 46, 0.28), 0 0 44px rgba(255, 157, 46, 0.12);
   transform: translateY(-4px);
 }
 
-.work-meta { color: var(--cyan); transition: color 0.3s ease; }
+.work-meta { color: var(--accent); transition: color 0.3s ease; }
 
-.work-card:hover .work-meta { color: var(--orange); text-shadow: var(--glow-text-orange); }
+.work-card:hover .work-meta { color: var(--action); text-shadow: var(--glow-action); }
 
 .work-card h3 {
   font-family: var(--font-display);
@@ -458,7 +459,7 @@ a { color: inherit; text-decoration: none; }
   font-family: var(--font-display);
   font-weight: 700;
   font-size: clamp(1.15rem, 3.2vw, 2.3rem);
-  color: var(--cyan-hot);
+  color: var(--accent-bright);
   text-shadow: var(--glow-text);
   border-bottom: 2px solid transparent;
   transition: color 0.25s ease, border-color 0.25s ease, text-shadow 0.25s ease;
@@ -466,9 +467,9 @@ a { color: inherit; text-decoration: none; }
 }
 
 .contact-link:hover {
-  color: var(--orange-hot);
-  text-shadow: var(--glow-text-orange);
-  border-bottom-color: var(--orange);
+  color: var(--action-bright);
+  text-shadow: var(--glow-action);
+  border-bottom-color: var(--action);
 }
 
 .footer-meta {
@@ -480,7 +481,7 @@ a { color: inherit; text-decoration: none; }
   color: var(--muted);
 }
 
-.footer-meta a:hover { color: var(--cyan); text-shadow: 0 0 8px rgba(111, 195, 223, 0.5); }
+.footer-meta a:hover { color: var(--accent); text-shadow: 0 0 8px rgba(111, 195, 223, 0.5); }
 
 /* ---------- CRT scanline overlay ---------- */
 

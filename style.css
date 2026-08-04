@@ -839,3 +839,95 @@ a.channel:hover .channel-label { color: var(--accent); }
 @media (max-width: 640px) {
   .channels { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; padding: 0.9rem; }
 }
+
+/* work-side channel variants: a HUD tile of code glyphs rather than emoji art */
+
+.channels-heading {
+  max-width: 52rem;
+  margin: 3.5rem auto 1rem;
+  color: var(--accent);
+  text-shadow: var(--glow-text);
+  font-size: 0.8rem;
+}
+
+.channel-art--code {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.4rem, 3.2vw, 2.1rem);
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  text-shadow: var(--glow-text);
+}
+
+/* ---------- anime action-shot hover on channel tiles ----------
+   Three stacked devices, all driven off --accent so work reads cyan and home
+   reads red with no per-theme rules:
+     ::before  shuuchuusen — radial speed lines converging on the tile centre,
+               masked clear in the middle so the art stays readable
+     ::after   a diagonal impact slash that sweeps across once
+     the art   punches in slightly, overshooting on the way
+   isolation:isolate makes the tile a stacking context, so the negative-z
+   pseudos paint above the tile background but below the art and label. */
+
+.channel { position: relative; isolation: isolate; }
+
+.channel:not(.channel--empty)::before,
+.channel:not(.channel--empty)::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.channel:not(.channel--empty)::before {
+  inset: -30%;
+  background: repeating-conic-gradient(
+    from 0deg at 50% 45%,
+    var(--accent) 0deg 1.1deg,
+    transparent 1.1deg 4.2deg
+  );
+  opacity: 0;
+  transform: scale(0.5) rotate(-8deg);
+  transition: opacity 0.26s ease, transform 0.44s cubic-bezier(0.16, 0.9, 0.3, 1.25);
+  -webkit-mask-image: radial-gradient(circle at 50% 45%, transparent 20%, #000 60%);
+          mask-image: radial-gradient(circle at 50% 45%, transparent 20%, #000 60%);
+}
+
+.channel:not(.channel--empty):hover::before {
+  opacity: 0.5;
+  transform: scale(1) rotate(0deg);
+}
+
+.channel:not(.channel--empty)::after {
+  inset: 0;
+  background: linear-gradient(105deg,
+    transparent 36%, var(--accent) 47%, transparent 58%);
+  opacity: 0;
+  transform: translateX(-130%);
+}
+
+.channel:not(.channel--empty):hover::after {
+  animation: channel-slash 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+}
+
+@keyframes channel-slash {
+  0%   { opacity: 0;    transform: translateX(-130%); }
+  35%  { opacity: 0.45; }
+  100% { opacity: 0;    transform: translateX(130%); }
+}
+
+.channel-art {
+  transition: transform 0.34s cubic-bezier(0.16, 0.9, 0.3, 1.35);
+}
+
+.channel:not(.channel--empty):hover .channel-art {
+  transform: scale(1.14);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .channel:not(.channel--empty)::before,
+  .channel:not(.channel--empty)::after { transition: none; animation: none; opacity: 0; }
+  .channel-art { transition: none; }
+  .channel:not(.channel--empty):hover .channel-art { transform: none; }
+  .channel:not(.channel--empty):hover::before { opacity: 0.35; transform: scale(1) rotate(0deg); }
+}

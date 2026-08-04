@@ -162,6 +162,7 @@ a { color: inherit; text-decoration: none; }
 
 .mode-toggle {
   display: flex;
+  width: 12.5rem;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 999px;
@@ -169,13 +170,20 @@ a { color: inherit; text-decoration: none; }
   box-shadow: var(--glow-box);
 }
 
+/* Geometry is pinned so the control cannot resize when the theme swaps fonts:
+   the two themes use different mono faces with different advance widths, which
+   previously grew the toggle by 25px and shoved the R—H mark along with it.
+   Equal flex children inside a fixed-width track keeps both pills stable.
+   Note: no `font: inherit` here — it silently defeated the .mono class and made
+   these render in the body font instead. */
 .mode-btn {
   appearance: none;
   border: 0;
   background: transparent;
   color: var(--muted-strong);
-  font: inherit;
-  padding: 0.4rem 0.85rem;
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 0.4rem 0;
   border-radius: 999px;
   cursor: pointer;
   transition: background 0.25s ease, color 0.25s ease;
@@ -760,7 +768,7 @@ a { color: inherit; text-decoration: none; }
      sharing the left cluster; below 640px there isn't room for toggle +
      mark + all three nav links without wrapping/clipping, so it's hidden. */
   .nav-mark { display: none; }
-  .mode-btn { padding: 0.4rem 0.65rem; }
+  .mode-toggle { width: 10.5rem; }
   .footer-meta { gap: 1.25rem; }
 }
 

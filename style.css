@@ -42,6 +42,8 @@
   --font-serif: var(--font-display);
 
   --gutter: clamp(1.25rem, 5vw, 5rem);
+  --channel-tint: rgba(111, 195, 223, 0.10);
+  --channel-shadow: 0 6px 16px rgba(3, 10, 18, 0.5);
 }
 
 /* ---------- home theme ----------
@@ -79,6 +81,8 @@
   --font-body: "Archivo", system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
   --font-serif: "Playfair Display", Georgia, serif;
+  --channel-tint: rgba(20, 18, 16, 0.06);
+  --channel-shadow: 0 6px 16px rgba(20, 18, 16, 0.16);
 }
 
 /* content sides: hide the INACTIVE side only, so the active side keeps
@@ -426,8 +430,6 @@ a { color: inherit; text-decoration: none; }
   text-shadow: var(--glow-text);
 }
 
-.marquee-band--footer { padding: clamp(1rem, 2.5vh, 1.8rem) 0; }
-
 @keyframes marquee-scroll {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
@@ -673,10 +675,6 @@ a { color: inherit; text-decoration: none; }
   color: var(--band);
 }
 
-:root[data-mode="home"] .marquee-band--footer .marquee--heavy {
-  color: var(--bg);
-}
-
 /* statement accent: serif italic red, not a glowing core */
 :root[data-mode="home"] .statement em {
   font-family: var(--font-serif);
@@ -764,4 +762,80 @@ a { color: inherit; text-decoration: none; }
   .nav-mark { display: none; }
   .mode-btn { padding: 0.4rem 0.65rem; }
   .footer-meta { gap: 1.25rem; }
+}
+
+/* ---------- Wii-style channel grid (home side) ----------
+   Wii in form — rounded 4:3 tiles, a bevelled label banner, lift on select —
+   but coloured from the home tokens so it sits in the warm palette rather than
+   importing the console's blue. */
+
+.channels {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.1rem;
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--channel-tint);
+}
+
+.channel {
+  display: flex;
+  flex-direction: column;
+  aspect-ratio: 4 / 3;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: var(--channel-shadow);
+  overflow: hidden;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.channel-art {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  font-size: clamp(2rem, 5vw, 3.1rem);
+  line-height: 1;
+}
+
+.channel-label {
+  border-top: 1px solid var(--line);
+  background: var(--channel-tint);
+  color: var(--surface-text);
+  text-align: center;
+  padding: 0.5rem 0.4rem;
+  font-size: 0.6rem;
+}
+
+a.channel:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+  box-shadow: var(--channel-shadow), 0 0 0 2px var(--accent);
+}
+
+a.channel:hover .channel-label { color: var(--accent); }
+
+.channel--empty {
+  background: transparent;
+  border-style: dashed;
+  box-shadow: none;
+}
+
+.channel--empty .channel-label {
+  border-top: 0;
+  background: transparent;
+  color: var(--muted);
+  margin: auto 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .channel { transition: none; }
+  a.channel:hover { transform: none; }
+}
+
+@media (max-width: 640px) {
+  .channels { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; padding: 0.9rem; }
 }

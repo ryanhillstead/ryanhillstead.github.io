@@ -818,19 +818,6 @@ a.channel:hover {
 
 a.channel:hover .channel-label { color: var(--accent); }
 
-.channel--empty {
-  background: transparent;
-  border-style: dashed;
-  box-shadow: none;
-}
-
-.channel--empty .channel-label {
-  border-top: 0;
-  background: transparent;
-  color: var(--muted);
-  margin: auto 0;
-}
-
 @media (prefers-reduced-motion: reduce) {
   .channel { transition: none; }
   a.channel:hover { transform: none; }

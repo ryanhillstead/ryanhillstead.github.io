@@ -233,36 +233,34 @@
       </h2>
       <p class="section-body reveal" data-side="home">
         Most of my week outside work belongs to my family. What's left goes to
-        Formula 1 and video games — and to the side projects below.
+        Formula 1, video games, and a skateboard.
       </p>
     </section>
 
     <section class="section section--void" id="work">
-      <div class="domain" data-side="work">
-        <div class="domain-item reveal">
-          <h3 class="mono">Power systems, now</h3>
-          <p>Internal tools and web apps for the people who generate and deliver
-          electricity. It runs against real operational data, so correctness and
-          traceability matter more than novelty — when a tool is wrong, someone
-          downstream has to catch it.</p>
-        </div>
-        <div class="domain-item reveal">
-          <h3 class="mono">Vision AI, before that</h3>
-          <p>Annotated video and sensor data from a production vehicle fleet to
-          train the machine-learning models behind driver assistance, working with
-          data engineers to shape annotation requirements and iterate on the
-          strategy behind them.</p>
-        </div>
-        <div class="domain-item reveal">
-          <h3 class="mono">Business intelligence</h3>
-          <p>Queried and cleaned raw data out of Oracle and Azure sources, built
-          dashboards in Power BI, Tableau and Excel, and migrated a body of Oracle
-          SQL to Azure T-SQL without losing the queries behind it.</p>
-        </div>
-        <div class="domain-item reveal">
-          <h3 class="mono">Education</h3>
-          <p>B.S. Software Engineering — Utah Valley University, 2024</p>
-        </div>
+      <!-- Wii-style channel grid: projects on the work side, hobbies on home -->
+      <h3 class="channels-heading mono reveal" data-side="work">Projects</h3>
+      <div class="channels reveal" data-side="work">
+        <a class="channel" href="https://github.com/ryanhillstead/collectors-vault">
+          <span class="channel-art channel-art--code" aria-hidden="true">CV</span>
+          <span class="channel-label mono">Collectors Vault</span>
+        </a>
+        <a class="channel" href="https://github.com/ryanhillstead/discord-bot">
+          <span class="channel-art channel-art--code" aria-hidden="true">BOT</span>
+          <span class="channel-label mono">Discord Bot</span>
+        </a>
+        <a class="channel" href="https://github.com/ryanhillstead/First-Website">
+          <span class="channel-art channel-art--code" aria-hidden="true">FW</span>
+          <span class="channel-label mono">First Website</span>
+        </a>
+        <a class="channel" href="https://github.com/ryanhillstead/ryanhillstead.github.io">
+          <span class="channel-art channel-art--code" aria-hidden="true">R—H</span>
+          <span class="channel-label mono">This Site</span>
+        </a>
+        <a class="channel" href="https://github.com/ryanhillstead">
+          <span class="channel-art channel-art--code" aria-hidden="true">GH</span>
+          <span class="channel-label mono">GitHub</span>
+        </a>
       </div>
       <h3 class="channels-heading mono reveal" data-side="work">Stack</h3>
       <div class="channels reveal" data-side="work">
@@ -303,32 +301,34 @@
           <span class="channel-label mono">Excel</span>
         </div>
       </div>
-      <!-- Wii-style channel grid: projects and hobbies as selectable channels -->
+      <h3 class="channels-heading mono reveal" data-side="home">Hobbies</h3>
+      <!-- Each tile carries its hover photo in --shot; see .channel--shot in style.css.
+           Photo credits are in README.md. -->
       <div class="channels reveal" data-side="home">
-        <a class="channel" href="https://github.com/ryanhillstead/collectors-vault">
-          <span class="channel-art channel-art--code" aria-hidden="true">CV</span>
-          <span class="channel-label mono">Collectors Vault</span>
-        </a>
-        <a class="channel" href="https://github.com/ryanhillstead/discord-bot">
-          <span class="channel-art channel-art--code" aria-hidden="true">DB</span>
-          <span class="channel-label mono">Discord Bot</span>
-        </a>
-        <a class="channel" href="https://github.com/ryanhillstead/First-Website">
-          <span class="channel-art channel-art--code" aria-hidden="true">FW</span>
-          <span class="channel-label mono">First Website</span>
-        </a>
-        <div class="channel channel--static">
-          <span class="channel-art channel-art--code" aria-hidden="true">F1</span>
+        <div class="channel channel--static channel--shot" style="--shot: url('assets/hobby-f1.jpg')">
+          <span class="channel-art channel-art--code" aria-hidden="true"><span class="channel-glyph">F1</span></span>
           <span class="channel-label mono">Formula 1</span>
         </div>
-        <div class="channel channel--static">
-          <span class="channel-art channel-art--code" aria-hidden="true">GG</span>
-          <span class="channel-label mono">Games</span>
+        <div class="channel channel--static channel--shot" style="--shot: url('assets/hobby-gaming.jpg')">
+          <span class="channel-art channel-art--code" aria-hidden="true"><span class="channel-glyph">GG</span></span>
+          <span class="channel-label mono">Gaming</span>
         </div>
-        <a class="channel" href="https://github.com/ryanhillstead">
-          <span class="channel-art channel-art--code" aria-hidden="true">GH</span>
-          <span class="channel-label mono">GitHub</span>
-        </a>
+        <div class="channel channel--static channel--shot" style="--shot: url('assets/hobby-skate.jpg')">
+          <span class="channel-art channel-art--code" aria-hidden="true"><span class="channel-glyph">SK8</span></span>
+          <span class="channel-label mono">Skateboarding</span>
+        </div>
+        <div class="channel channel--static channel--shot" style="--shot: url('assets/hobby-retro.jpg')">
+          <span class="channel-art channel-art--code" aria-hidden="true"><span class="channel-glyph">8BIT</span></span>
+          <span class="channel-label mono">Console Repair</span>
+        </div>
+        <div class="channel channel--static channel--shot" style="--shot: url('assets/hobby-movies.jpg')">
+          <span class="channel-art channel-art--code" aria-hidden="true"><span class="channel-glyph">MOV</span></span>
+          <span class="channel-label mono">Movies</span>
+        </div>
+        <div class="channel channel--static channel--shot" style="--shot: url('assets/hobby-books.jpg')">
+          <span class="channel-art channel-art--code" aria-hidden="true"><span class="channel-glyph">BK</span></span>
+          <span class="channel-label mono">Books</span>
+        </div>
       </div>
     </section>
 
